@@ -23,9 +23,9 @@ void MainWindow::keyReleaseEvent(QKeyEvent* event)
     {
         switch (key)
         {
-   //     case Qt::Key_Down:
-   //         timer->setInterval(SLOW_TIME_INTERVAL);
-    //        break;
+        case Qt::Key_Down:
+            timer->setInterval(SLOW_TIME_INTERVAL);
+            break;
 
         case Qt::Key_Up:
             if(ge->get_move_down_ok())

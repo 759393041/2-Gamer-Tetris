@@ -1,0 +1,14 @@
+release/main.o
+release/mainwindow.o
+release/cell.o
+release/shape.o
+release/board.o
+release/game_engine.o
+release/oshape.o
+release/sshape.o
+release/zshape.o
+release/tshape.o
+release/ishape.o
+release/jshape.o
+release/lshape.o
+release/moc_mainwindow.o
