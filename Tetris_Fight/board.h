@@ -5,6 +5,10 @@
 #include<QPoint>
 #include"cell.h"
 
+
+
+//Which position的意思是我旋转了多少下。也就是按了多少次上
+//对它取余4不久是能确定转的形态是0/1/2/3哪种么 :)
 class board
 {
 public:
