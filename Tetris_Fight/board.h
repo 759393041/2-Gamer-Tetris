@@ -20,7 +20,7 @@ public:
     bool is_something(int);//判断一行是否有东西
     void clear_row(int);//清空这一行
     void row_cut_paste(int from,int to);//把这行从from行整体移动到to行(所以类似于裁剪)
-    const QPoint get_start_location(int, int, int);//获取在棋盘上开始的位置location on board
+    const QPoint get_start_location(int, int, int);//获取在棋盘上开始的位置
     board& operator=(const board& bd) { return copy(bd); }
     ~board();
 

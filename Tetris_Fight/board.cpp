@@ -63,7 +63,11 @@ bool board::is_full(int num)
 
     for(int c = 0; c < board_w; c++)
     {
-        count = (board_space[num * board_w + c].get_color() != NO_COLOR ? ++count : count);
+        if(board_space[num * board_w + c].get_color() != NO_COLOR)
+        {
+                count++;
+        }
+
     }
 
     return (count == board_w);
@@ -76,7 +80,12 @@ bool board::is_empty(int num)
     int count = 0;
     for(int c = 0; c < board_w; c++)
     {
-        count = (board_space[num * board_w + c].get_color() == NO_COLOR ? ++count : count);
+        if(board_space[num * board_w + c].get_color() == NO_COLOR)
+        {
+                count++;
+        }
+
+
     }
     return (count == board_w);
 }
@@ -127,6 +136,51 @@ board& board::copy(const board&bd)
 }
 
 //const QPoint get_start_location(int, int, int);
+const QPoint board::get_start_location(int _shape, int hrz, int vrtx)
+{
+    int h = 0;
+    int w = 0;
+// 为什么J_L_VRTX_START_LOCATION是2，因为是从0开始计数哒 以此类推 实际上L是三个格子长度
+//想要把整个图片 显示在最顶端，就要提前预留好空间，所以L 和J 一组 以此类推
+    switch (_shape)
+    {
+    case L_SHAPE:
+        w = (hrz == HRZ_CENTER ? board_w / HALF : ALL_HRZ_START_LOCATION);
+        h = (vrtx == VRTX_CENTER ? board_w / HALF + BIAS : J_L_VRTX_START_LOCATION);
+        break;
+
+    case J_SHAPE:
+        w = (hrz == HRZ_CENTER ? board_w / HALF - BIAS : ALL_HRZ_START_LOCATION);
+        h = (vrtx == VRTX_CENTER ? board_w / HALF + BIAS : J_L_VRTX_START_LOCATION);
+        break;
+
+    case I_SHAPE:
+        w = (hrz == HRZ_CENTER ? board_w / HALF : ALL_HRZ_START_LOCATION);
+        h = (vrtx == VRTX_CENTER ? board_w / HALF + BIAS : I_VRTX_START_LOCATION);
+        break;
+
+    case Z_SHAPE:
+        w = (hrz == HRZ_CENTER ? board_w / HALF + BIAS : ALL_HRZ_START_LOCATION);
+        h = (vrtx == VRTX_CENTER ? board_w / HALF : S_O_Z_T_VRTX_START_LOCATION);
+        break;
+
+    case T_SHAPE:
+        w = (hrz == HRZ_CENTER ? board_w / HALF : ALL_HRZ_START_LOCATION);
+        h = (vrtx == VRTX_CENTER ? board_w / HALF : S_O_Z_T_VRTX_START_LOCATION);
+        break;
+
+    case S_SHAPE:
+    case O_SHAPE:
+        w = (hrz == HRZ_CENTER ? board_w / HALF - BIAS : ALL_HRZ_START_LOCATION);
+        h = (vrtx == VRTX_CENTER ? board_w / HALF : S_O_Z_T_VRTX_START_LOCATION);
+        break;
+
+    default:
+        break;
+    }
+
+    return QPoint(h, w);
+}
 
 
 
