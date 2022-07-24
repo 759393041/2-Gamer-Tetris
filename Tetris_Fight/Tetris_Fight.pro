@@ -12,13 +12,15 @@ SOURCES += \
     board.cpp \
     cell.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    shape.cpp
 
 HEADERS += \
     board.h \
     cell.h \
     mainwindow.h \
-    public_define.h
+    public_define.h \
+    shape.h
 
 FORMS += \
     mainwindow.ui
