@@ -1,0 +1,14 @@
+debug/board.o
+debug/cell.o
+debug/game_engine.o
+debug/ishape.o
+debug/jshape.o
+debug/lshape.o
+debug/main.o
+debug/mainwindow.o
+debug/oshape.o
+debug/shape.o
+debug/sshape.o
+debug/tshape.o
+debug/zshape.o
+debug/moc_mainwindow.o

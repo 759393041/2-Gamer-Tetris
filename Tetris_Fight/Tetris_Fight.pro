@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     board.cpp \
     cell.cpp \
+    game_engine.cpp \
     ishape.cpp \
     jshape.cpp \
     lshape.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 HEADERS += \
     board.h \
     cell.h \
+    game_engine.h \
     ishape.h \
     jshape.h \
     lshape.h \
