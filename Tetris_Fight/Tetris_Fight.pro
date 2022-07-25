@@ -11,16 +11,30 @@ CONFIG += c++17
 SOURCES += \
     board.cpp \
     cell.cpp \
+    ishape.cpp \
+    jshape.cpp \
+    lshape.cpp \
     main.cpp \
     mainwindow.cpp \
-    shape.cpp
+    oshape.cpp \
+    shape.cpp \
+    sshape.cpp \
+    tshape.cpp \
+    zshape.cpp
 
 HEADERS += \
     board.h \
     cell.h \
+    ishape.h \
+    jshape.h \
+    lshape.h \
     mainwindow.h \
+    oshape.h \
     public_define.h \
-    shape.h
+    shape.h \
+    sshape.h \
+    tshape.h \
+    zshape.h
 
 FORMS += \
     mainwindow.ui
