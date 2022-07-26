@@ -5,6 +5,7 @@
 #include<QPainter>
 #include<QEvent>
 #include<QDebug>
+#include<QTimerEvent>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -12,28 +13,29 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ge = new gameEngine(ui->frm_main->x(), ui->frm_main->y(), ui->frm_next->x(), ui->frm_next->y());
     connect(ui->btn_start, SIGNAL(clicked(bool)), this, SLOT(start_game()));
-
     connect(ui->btn_new, SIGNAL(clicked(bool)), this, SLOT(new_game()));
     setFocusPolicy(Qt::StrongFocus);
     game_is_started = false;
-
-
-
-
 }
-int re;
-int ps;
+
+int re=-1;
+int ps=-1;
+
 
 void MainWindow::keyReleaseEvent(QKeyEvent* event)
 {
     int key = event->key();
-
     if(game_is_started)
     {
         switch (key)
         {
          case Qt::Key_Down:
+            re=timer_releaseup_id;
             timer_releaseup_id=startTimer(1000);
+            if(re!=-1)
+            {
+                killTimer(re);
+            }
             break;
            case Qt::Key_Up:
             if(ge->get_move_down_ok())
@@ -67,7 +69,12 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
 
         case Qt::Key_Down:
             ge->move_down();
+            ps=timer_pressdown_id;
             timer_pressdown_id=startTimer(100);
+            if(ps!=-1)
+            {
+                killTimer(ps);
+            }
             break;
         }
     }
@@ -125,6 +132,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
         }
         update();
     }
+
     if(event->timerId()==timer_releaseup_id)
     {
         if(ge->get_move_down_ok())
@@ -147,8 +155,9 @@ void MainWindow::timerEvent(QTimerEvent *event)
             ge->next_place_a_shape();
         }
         update();
-    }
 
+    }
+    qDebug()<<event->timerId();
 }
 
 
