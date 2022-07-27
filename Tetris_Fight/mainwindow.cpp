@@ -6,6 +6,7 @@
 #include<QEvent>
 #include<QTimerEvent>
 #include<QDebug>
+#include<QMessageBox>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -131,7 +132,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
             if(ge->is_game_over())
             {
                 killTimer(event->timerId());
-                qDebug()<<"gameover";
+                QMessageBox::information(this,"游戏结束","Game Over",QMessageBox::Yes);
                 return;
             }
 
@@ -162,6 +163,8 @@ void MainWindow::timerEvent(QTimerEvent *event)
             if(ge->is_game_over())
             {
                 killTimer(event->timerId());
+
+
                 return;
             }
 
