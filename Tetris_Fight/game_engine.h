@@ -31,7 +31,7 @@ public:
     void rows_move_down();
     void rotate();
     int compute_score();//计分 可以在此调用信号槽 发送攻击信号
-
+    bool is_game_over();//判断游戏结束
 private:
 
     void traverse_rows(int* cld_rows = NULL);

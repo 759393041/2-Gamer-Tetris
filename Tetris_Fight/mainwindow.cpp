@@ -4,8 +4,8 @@
 #include<QKeyEvent>
 #include<QPainter>
 #include<QEvent>
-#include<QDebug>
 #include<QTimerEvent>
+#include<QDebug>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -18,8 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     game_is_started = false;
 }
 
-int re=-1;
-int ps=-1;
+
 
 
 void MainWindow::keyReleaseEvent(QKeyEvent* event)
@@ -31,11 +30,11 @@ void MainWindow::keyReleaseEvent(QKeyEvent* event)
         {
          case Qt::Key_Down:
             re=timer_releaseup_id;
-            timer_releaseup_id=startTimer(1000);
             if(re!=-1)
             {
                 killTimer(re);
             }
+            timer_releaseup_id=startTimer(1000);
             break;
            case Qt::Key_Up:
             if(ge->get_move_down_ok())
@@ -70,11 +69,12 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
         case Qt::Key_Down:
             ge->move_down();
             ps=timer_pressdown_id;
-            timer_pressdown_id=startTimer(100);
             if(ps!=-1)
             {
                 killTimer(ps);
             }
+            timer_pressdown_id=startTimer(100);
+
             break;
         }
     }
@@ -110,6 +110,7 @@ void MainWindow::paintEvent(QPaintEvent *)
 }
 void MainWindow::timerEvent(QTimerEvent *event)
 {
+
     if(event->timerId()==timer_pressdown_id)
     {
         if(ge->get_move_down_ok())
@@ -126,6 +127,14 @@ void MainWindow::timerEvent(QTimerEvent *event)
                 ge->rows_move_down();
                 ui->lbl_score->setText(QString::number(score));
             }
+
+            if(ge->is_game_over())
+            {
+                killTimer(event->timerId());
+                qDebug()<<"gameover";
+                return;
+            }
+
             ge->main_place_a_shape();
             ge->get_next_bd().clear_board();
             ge->next_place_a_shape();
@@ -150,14 +159,21 @@ void MainWindow::timerEvent(QTimerEvent *event)
                 ge->rows_move_down();
                 ui->lbl_score->setText(QString::number(score));
             }
+            if(ge->is_game_over())
+            {
+                killTimer(event->timerId());
+                return;
+            }
+
             ge->main_place_a_shape();
             ge->get_next_bd().clear_board();
             ge->next_place_a_shape();
         }
+
+
         update();
 
     }
-    qDebug()<<event->timerId();
 }
 
 
@@ -169,12 +185,15 @@ void MainWindow::start_game()
     ge->next_place_a_shape();
     update();
     ui->btn_start->setEnabled(false);
+
     timer_releaseup_id=startTimer(1000);
     game_is_started = true;
 }
 
 void MainWindow::new_game()
 {
+
+
     game_is_started = false;
     killTimer(timer_releaseup_id);
 

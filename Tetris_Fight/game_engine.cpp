@@ -148,7 +148,7 @@ int gameEngine::num_rows_cld()
     return num;
 }
 
-void gameEngine::traverse_rows(int* cld_rows)
+void gameEngine::traverse_rows(int* cld_rows)//将图形转换成固定背景
 {
     for(int i = MAIN_BOARD_HEIGHT - BIAS; i >= 0; i--)
     {
@@ -280,6 +280,167 @@ void gameEngine::move(int up_down, int left_right)
 
         main_bd.set_cell_color(pass, tracked_shape->get_color());
     }
+}
+
+bool gameEngine::is_game_over()
+{
+    int r=0;
+    int c=0;
+    cell cells[NUM_OF_CELLS];
+    int var = 0;
+    switch (m_ishape)
+{
+    case L_SHAPE:
+   {
+         r=main_bd.get_start_location(L_SHAPE, HRZ_CENTER, VRTX_START).x();
+         c=main_bd.get_start_location(L_SHAPE, HRZ_CENTER, VRTX_START).y();
+         cells[FIRST_CELL]=main_bd.get_a_cell(r,c);
+         cells[SECOND_CELL]=main_bd.get_a_cell(r, c + LEFT);
+         cells[THIRD_CELL] = main_bd.get_a_cell(r + UP, c + LEFT);
+         cells[FOUTH_CELL] = main_bd.get_a_cell(r + UP + UP, c + LEFT);
+         for ( var = 0; var < NUM_OF_CELLS; ++var) {
+
+             if(cells[var].get_color()!=NO_COLOR)
+             {
+                 return true;
+
+             }
+         }
+    }
+        break;
+    case J_SHAPE:
+    {
+        r=main_bd.get_start_location(J_SHAPE, HRZ_CENTER, VRTX_START).x();
+        c=main_bd.get_start_location(J_SHAPE, HRZ_CENTER, VRTX_START).y();
+        cells[FIRST_CELL]=main_bd.get_a_cell(r,c);
+
+
+        cells[SECOND_CELL] = main_bd.get_a_cell(r, c + RIGHT);
+        cells[THIRD_CELL] = main_bd.get_a_cell(r + UP, c + RIGHT);
+        cells[FOUTH_CELL] = main_bd.get_a_cell(r + UP + UP, c + RIGHT);
+
+        for ( var = 0; var < NUM_OF_CELLS; ++var) {
+
+            if(cells[var].get_color()!=NO_COLOR)
+            {
+                return true;
+
+            }
+        }
+     }
+        break;
+
+    case I_SHAPE:
+    {
+        r=main_bd.get_start_location(I_SHAPE, HRZ_CENTER, VRTX_START).x();
+        c=main_bd.get_start_location(I_SHAPE, HRZ_CENTER, VRTX_START).y();
+        cells[FIRST_CELL]=main_bd.get_a_cell(r,c);
+
+        cells[SECOND_CELL] = main_bd.get_a_cell(r + UP, c);
+        cells[THIRD_CELL] = main_bd.get_a_cell(r + UP + UP, c);
+        cells[FOUTH_CELL] = main_bd.get_a_cell(r + UP + UP + UP, c);
+
+        for ( var = 0; var < NUM_OF_CELLS; ++var) {
+
+            if(cells[var].get_color()!=NO_COLOR)
+            {
+                return true;
+
+            }
+        }
+
+    }
+        break;
+
+    case T_SHAPE:
+    {
+        r=main_bd.get_start_location(T_SHAPE, HRZ_CENTER, VRTX_START).x();
+        c=main_bd.get_start_location(T_SHAPE, HRZ_CENTER, VRTX_START).y();
+        cells[FIRST_CELL]=main_bd.get_a_cell(r,c);
+
+        cells[SECOND_CELL] = main_bd.get_a_cell(r + UP, c);
+        cells[THIRD_CELL] = main_bd.get_a_cell(r + UP, c + LEFT);
+        cells[FOUTH_CELL] = main_bd.get_a_cell(r + UP, c + RIGHT);
+
+        for ( var = 0; var < NUM_OF_CELLS; ++var) {
+
+            if(cells[var].get_color()!=NO_COLOR)
+            {
+                return true;
+
+            }
+        }
+    }
+        break;
+
+    case Z_SHAPE:
+    {
+        r=main_bd.get_start_location(Z_SHAPE, HRZ_CENTER, VRTX_START).x();
+        c=main_bd.get_start_location(Z_SHAPE, HRZ_CENTER, VRTX_START).y();
+        cells[FIRST_CELL]=main_bd.get_a_cell(r,c);
+
+        cells[SECOND_CELL] = main_bd.get_a_cell(r, c + LEFT);
+        cells[THIRD_CELL] = main_bd.get_a_cell(r + UP, c + LEFT);
+        cells[FOUTH_CELL] = main_bd.get_a_cell(r + UP, c + LEFT + LEFT);
+
+        for ( var = 0; var < NUM_OF_CELLS; ++var) {
+
+            if(cells[var].get_color()!=NO_COLOR)
+            {
+                return true;
+
+            }
+        }
+    }
+        break;
+
+    case S_SHAPE:
+    {
+        r=main_bd.get_start_location(S_SHAPE, HRZ_CENTER, VRTX_START).x();
+        c=main_bd.get_start_location(S_SHAPE, HRZ_CENTER, VRTX_START).y();
+        cells[FIRST_CELL]=main_bd.get_a_cell(r,c);
+
+        cells[SECOND_CELL] = main_bd.get_a_cell(r, c + RIGHT);
+        cells[THIRD_CELL] = main_bd.get_a_cell(r + UP, c + RIGHT);
+        cells[FOUTH_CELL] = main_bd.get_a_cell(r + UP, c + RIGHT + RIGHT);
+
+        for ( var = 0; var < NUM_OF_CELLS; ++var) {
+
+            if(cells[var].get_color()!=NO_COLOR)
+            {
+                return true;
+
+            }
+        }
+    }
+        break;
+
+    case O_SHAPE:
+    {
+        r=main_bd.get_start_location(O_SHAPE, HRZ_CENTER, VRTX_START).x();
+        c=main_bd.get_start_location(O_SHAPE, HRZ_CENTER, VRTX_START).y();
+        cells[FIRST_CELL]=main_bd.get_a_cell(r,c);
+
+        cells[SECOND_CELL] = main_bd.get_a_cell(r, c + RIGHT);
+        cells[THIRD_CELL] = main_bd.get_a_cell(r + UP, c);
+        cells[FOUTH_CELL] = main_bd.get_a_cell(r + UP, c + RIGHT);
+
+        for ( var = 0; var < NUM_OF_CELLS; ++var) {
+
+            if(cells[var].get_color()!=NO_COLOR)
+            {
+                return true;
+
+            }
+        }
+    }
+        break;
+
+    default:
+        break;
+    }
+
+            return false;
 }
 
 gameEngine::~gameEngine()

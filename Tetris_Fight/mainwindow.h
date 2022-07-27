@@ -26,7 +26,8 @@ public:
     void keyReleaseEvent(QKeyEvent * event) override;
     void keyPressEvent(QKeyEvent * event) override;
     void timerEvent(QTimerEvent *event)override;
-
+    int re=-1;
+    int ps=-1;
 public slots:
     void start_game();
     void new_game();
