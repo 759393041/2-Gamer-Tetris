@@ -113,3 +113,7 @@ event其实不好，
 # 为什么使用update而不是repaint
 
 ![image](https://user-images.githubusercontent.com/81805379/181667855-91b88e02-e38d-45cb-b60a-99163246f11f.png)
+
+# strongfocuspolicy
+
+![image](https://user-images.githubusercontent.com/81805379/181672328-6ee9f791-8e42-42b0-aec2-d5bb3f558ad3.png)
