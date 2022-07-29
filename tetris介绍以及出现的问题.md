@@ -109,3 +109,7 @@ event其实不好，
  在处理函数dealdata里面，将数据以自定义信号的方式发出去，这样的话在dealdata里就不需要调函数了
 
  Qemit 发射 (信号)
+
+# 为什么使用update而不是repaint
+
+![image](https://user-images.githubusercontent.com/81805379/181667855-91b88e02-e38d-45cb-b60a-99163246f11f.png)
