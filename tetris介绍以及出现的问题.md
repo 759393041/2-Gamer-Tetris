@@ -117,3 +117,7 @@ event其实不好，
 # strongfocuspolicy
 
 ![image](https://user-images.githubusercontent.com/81805379/181672328-6ee9f791-8e42-42b0-aec2-d5bb3f558ad3.png)
+
+# 为社么服务器socket一开始给0
+
+0是INVALID_SOCKET，connect当然失败了，如果socket成功，返回的应该是大于0的SOCKET
