@@ -121,3 +121,5 @@ event其实不好，
 # 为社么服务器socket一开始给0
 
 0是INVALID_SOCKET，connect当然失败了，如果socket成功，返回的应该是大于0的SOCKET
+
+# (未解答)问：为什么要把所有变量都写成私有的
